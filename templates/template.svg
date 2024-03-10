@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="350" height="440">
+    <rect width="350" height="440" fill="black"/>
+    <image x="30" y="40" width="280" height="280" href="{{.ImageURL}}" style="outline: 2px solid white;"/>
+    <text x="50%" y="370" font-family="Arial" font-size="26" fill="white" text-anchor="middle">{{.TextLine1}}</text>
+    <text x="50%" y="410" font-family="Arial" font-size="20" fill="white" text-anchor="middle">{{.TextLine2}}</text>
+</svg>
