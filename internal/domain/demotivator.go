@@ -6,12 +6,12 @@ import (
 )
 
 type Demotivator struct {
-	ImageURL  string
-	TextLine1 string
-	TextLine2 string
+	ImageBase64 string
+	TextLine1   string
+	TextLine2   string
 }
 
-func (d *Demotivator) Generate(resultWriter io.Writer) error {
+func (d Demotivator) Generate(resultWriter io.Writer) error {
 	template, err := templates.GetTemplate()
 	if err != nil {
 		return err
