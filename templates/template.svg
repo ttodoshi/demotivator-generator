@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" height="440">
     <rect width="350" height="440" fill="black"/>
-    <rect x="33" y="38" width="284" height="284" fill="white"/>
+    <rect x="30" y="35" width="290" height="290" fill="white"/>
+    <rect x="32" y="37" width="286" height="286" fill="black"/>
     <image x="35" y="40" width="280" height="280" xlink:href="data:image/png;base64,{{.ImageBase64}}"/>
     <text x="175" y="370" font-family="Serif" font-size="26" fill="white" text-anchor="middle">{{.TextLine1}}</text>
     <text x="175" y="410" font-family="Serif" font-size="20" fill="white" text-anchor="middle">{{.TextLine2}}</text>

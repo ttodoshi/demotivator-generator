@@ -17,6 +17,7 @@ func GenerateDemotivator(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Content-Type", "image/svg+xml")
 	w.Header().Add("Cache-Control", "s-max-age=60, stale-while-revalidate")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	imageBase64, err := getImageAsBase64(r)
 	if err != nil {
@@ -73,8 +74,8 @@ func resizeImage(file multipart.File) (reader io.Reader, closeFunc func()) {
 
 	request, err := http.NewRequest(http.MethodGet, os.Getenv("RESIZE_URL"), body)
 	q := request.URL.Query()
-	q.Add("width", "400")
-	q.Add("height", "400")
+	q.Add("width", "500")
+	q.Add("height", "500")
 	q.Add("save-proportions", "false")
 	request.URL.RawQuery = q.Encode()
 
