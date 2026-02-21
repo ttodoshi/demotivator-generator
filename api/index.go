@@ -8,6 +8,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"os"
+	"unicode/utf8"
 )
 
 func GenerateDemotivator(w http.ResponseWriter, r *http.Request) {
@@ -25,11 +26,11 @@ func GenerateDemotivator(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = Demotivator{
-		ImageBase64: imageBase64,
-		TextLine1:   r.URL.Query().Get("text1"),
-		TextLine2:   r.URL.Query().Get("text2"),
-	}.Generate(w)
+	err = NewDemotivator(
+		imageBase64,
+		r.URL.Query().Get("text1"),
+		r.URL.Query().Get("text2"),
+	).Generate(w)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -122,7 +123,20 @@ func imageToBase64(file io.Reader) (string, error) {
 type Demotivator struct {
 	ImageBase64 string
 	TextLine1   string
+	TextLine1Y  int
 	TextLine2   string
+	TextLine2Y  int
+	Height      int
+}
+
+func NewDemotivator(imageBase64 string, textLine1 string, textLine2 string) *Demotivator {
+	offset := (50 * (utf8.RuneCountInString(textLine1) / 23)) + (50 * (utf8.RuneCountInString(textLine2) / 34))
+	return &Demotivator{
+		ImageBase64: imageBase64,
+		TextLine1:   textLine1, TextLine1Y: 370 + offset,
+		TextLine2: textLine2, TextLine2Y: 410 + offset,
+		Height: 440 + offset,
+	}
 }
 
 func (d Demotivator) Generate(resultWriter io.Writer) error {

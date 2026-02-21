@@ -1,8 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" height="440">
-    <rect width="350" height="440" fill="black"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" height="100%" viewBox="0 0 350 {{.Height}}">
+    <rect width="350" height="100%" fill="black"/>
     <rect x="30" y="35" width="290" height="290" fill="white"/>
     <rect x="32" y="37" width="286" height="286" fill="black"/>
     <image x="35" y="40" width="280" height="280" xlink:href="data:image/png;base64,{{.ImageBase64}}"/>
-    <text x="175" y="370" font-family="Serif" font-size="26" fill="white" text-anchor="middle">{{.TextLine1}}</text>
-    <text x="175" y="410" font-family="Serif" font-size="20" fill="white" text-anchor="middle">{{.TextLine2}}</text>
+
+    <!-- Контейнер для текста с переносом -->
+    <foreignObject x="35" y="{{.TextLine1Y}}" width="280" height="100" requiredExtensions="http://www.w3.org/1999/xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml"
+             style="
+                color: white;
+                font-family: Serif,serif;
+                font-size: 26px;
+                text-align: center;
+                width: 100%;
+                word-wrap: break-word;
+             ">
+            {{.TextLine1}}
+        </div>
+    </foreignObject>
+    <foreignObject x="35" y="{{.TextLine2Y}}" width="280" height="100" requiredExtensions="http://www.w3.org/1999/xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml"
+             style="
+                color: white;
+                font-family: Serif,serif;
+                font-size: 20px;
+                text-align: center;
+                width: 100%;
+                word-wrap: break-word;
+             ">
+            {{.TextLine2}}
+        </div>
+    </foreignObject>
 </svg>
