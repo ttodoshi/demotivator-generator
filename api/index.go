@@ -130,12 +130,13 @@ type Demotivator struct {
 }
 
 func NewDemotivator(imageBase64 string, textLine1 string, textLine2 string) *Demotivator {
-	offset := (50 * (utf8.RuneCountInString(textLine1) / 23)) + (50 * (utf8.RuneCountInString(textLine2) / 34))
+	offset1 := 40 * (utf8.RuneCountInString(textLine1) / 23)
+	offset2 := 40 * (utf8.RuneCountInString(textLine2) / 34)
 	return &Demotivator{
 		ImageBase64: imageBase64,
-		TextLine1:   textLine1, TextLine1Y: 370 + offset,
-		TextLine2: textLine2, TextLine2Y: 410 + offset,
-		Height: 440 + offset,
+		TextLine1:   textLine1, TextLine1Y: 350,
+		TextLine2: textLine2, TextLine2Y: 390 + offset1,
+		Height: 440 + offset1 + offset2,
 	}
 }
 
